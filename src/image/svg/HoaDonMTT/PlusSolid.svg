@@ -1,0 +1,14 @@
+<svg id="back_1_" data-name="back (1)" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+  <g id="Group_8739" data-name="Group 8739">
+    <g id="Group_8738" data-name="Group 8738">
+      <g id="Rectangle_7458" data-name="Rectangle 7458" fill="#fff" stroke="#001968" stroke-width="1">
+        <rect width="30" height="30" rx="5" stroke="none"/>
+        <rect x="0.5" y="0.5" width="29" height="29" rx="4.5" fill="none"/>
+      </g>
+      <g id="Group_31189" data-name="Group 31189" transform="translate(8 8)">
+        <line id="Line_23" data-name="Line 23" y2="14" transform="translate(7)" fill="none" stroke="#001968" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+        <line id="Line_24" data-name="Line 24" x2="14" transform="translate(0 7)" fill="none" stroke="#001968" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+      </g>
+    </g>
+  </g>
+</svg>
