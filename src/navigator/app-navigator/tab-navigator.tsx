@@ -1,65 +1,38 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { AppTabs } from '../types';
+import {  UserCircleIcon } from 'src/assets/svg-icons';
+import { appColors } from 'src/utils/theme';
 import { UserStackNavigator } from './app-stacks/user.stack';
 import { StyleSheet } from 'react-native';
-// import { AppText } from 'src/components/AppText';
-import  HomeScreen  from 'src/container/HomeScreen';
-import { AppColors } from 'src/theme';
-import InvoiceListScreen from 'src/container/InvoiceListScreen';
-import DashboardScreen from 'src/container/DashboardScreen';
-import ReportScreen from 'src/container/ReportScreen';
-import SendCQT from 'src/container/SendCQT';
+import { AppText } from 'src/components/AppText';
+import { HomeScreen } from 'src/screens/home/Home.screen';
 
 const Tab = createBottomTabNavigator();
-const ActiveHome = require('../../assets/images/svg/soildHome.svg')
-const ActiveList = require('../../assets/images/svg/soildList.svg')
+
 const bottomBarMenus = [
   {
     title: 'Trang chủ',
-    name: AppTabs.HomeScreen,
+    name: AppTabs.HOME_TAB,
     component: HomeScreen,
-    icon: ({ color }: any) => <ActiveHome fill={color} />,
+    icon: ({ color }: any) => <UserCircleIcon color={color} />,
   },
 
   {
-    title: 'Danh sách HĐ',
-    name: AppTabs.listInvoice,
-    component: InvoiceListScreen,
-    icon: ({ color }: any) => <ActiveList fill={color} />,
-  },
-  {
-    title: 'Thống kê',
-    name: AppTabs.Statistic,
-    component: DashboardScreen,
-    icon: ({ color }: any) => <ActiveList fill={color} />,
-  },
-  {
-    title: 'Báo cáo',
-    name: AppTabs.Report,
-    component: ReportScreen,
-    icon: ({ color }: any) => <ActiveList fill={color} />,
-  },
-  {
-    title: 'Chuyển cơ quan thuế',
-    name: AppTabs.sendCQT,
-    component: SendCQT,
-    icon: ({ color }: any) => <ActiveList fill={color} />,
+    title: 'Cá nhân',
+    name: AppTabs.USER_TAB,
+    component: UserStackNavigator,
+    icon: ({ color }: any) => <UserCircleIcon color={color} />,
   },
 ];
-const tabIndex = {
-  Home: 0,
-  ListInvoice: 1,
-  Dashboard: 2,
-  Account: 3,
-};
+
 export const MainTabNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarInactiveTintColor: AppColors.iconGray,
-        tabBarActiveTintColor: AppColors.blue,
+        tabBarInactiveTintColor: appColors.gray2,
+        tabBarActiveTintColor: appColors.main,
         tabBarIconStyle: styles.icon,
         tabBarItemStyle: styles.tabItem,
       }}>
@@ -70,11 +43,11 @@ export const MainTabNavigator = () => {
           component={item.component}
           options={() => {
             return {
-              // tabBarLabel: ({ color }) => (
-              //   <AppText fontSize="extraSmall" style={[styles.label, { color }]}>
-              //     {item.title}
-              //   </AppText>
-              // ),
+              tabBarLabel: ({ color }) => (
+                <AppText fontSize="extraSmall" style={[styles.label, { color }]}>
+                  {item.title}
+                </AppText>
+              ),
               tabBarStyle: styles.tab,
               tabBarIcon: item.icon,
             };

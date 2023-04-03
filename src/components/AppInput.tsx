@@ -9,7 +9,7 @@ import {
   TextStyle,
   TextInputProps,
 } from 'react-native';
-import { appColors, appFonts, appStyles } from 'src/utils/theme';
+import { appColors, appFonts } from 'src/utils/theme';
 import { AppText } from './AppText';
 
 type Props = {
@@ -82,7 +82,7 @@ export const AppInput: React.FC<Props> = ({
 
 const styles = StyleSheet.create({
   textInput: {
-    ...appStyles.smallText,
+    ...appFonts.smallBase,
     height: 48,
     borderColor: appColors.gray4,
     borderWidth: 1,

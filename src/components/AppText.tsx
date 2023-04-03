@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleProp, StyleSheet, Text, TextProps, TextStyle } from 'react-native';
-import { appColors, appFonts, appStyles } from 'src/utils/theme';
+import { appColors, appFonts } from 'src/utils/theme';
 
 export type AppTextProps = {
   fontSize?: string;
@@ -18,10 +18,10 @@ export const AppText: React.FC<AppTextProps> = ({
 }) => {
   // const lineHeight = appFontSize[fontSize] + 6;
   const customStyle = {
-    // color: appColors[color],
+    color: appColors[color],
     fontWeight,
     marginBottom: 4,
-    ...appStyles.baseText,
+    ...appFonts.base,
 
   };
   const style = StyleSheet.flatten([customStyle as StyleProp<TextStyle>, props.style]);
