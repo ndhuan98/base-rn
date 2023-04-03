@@ -1,0 +1,80 @@
+import React, { useMemo } from 'react';
+import { Platform, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import { AdjustIcon } from '../assets/svg-icons';
+import { appColors } from '../utils/theme';
+import { useAppState } from 'src/hooks/useAppState';
+import RNPickerSelect from 'react-native-picker-select';
+import { useQuery } from '@tanstack/react-query';
+import { getHealthTopic } from 'src/apis/advisoryTopic';
+
+type Props = {
+  wrapStyle?: StyleProp<ViewStyle>;
+};
+
+export function AppSortHealthTopic({ wrapStyle }: Props) {
+  const { appSortType, onSetValueSortType } = useAppState();
+
+  const { data } = useQuery(['HealthTopic'], () => getHealthTopic(), { refetchOnWindowFocus: false });
+
+  const adviseTopicData = useMemo(
+    () =>
+      (data || []).map((item: any) => ({
+        value: item?.id,
+        label: item?.topic,
+        key: item?.id,
+      })),
+    [data],
+  );
+
+  return (
+    <View style={[styles.main, Platform.OS === 'ios' && { height: 40 }, wrapStyle]}>
+      <RNPickerSelect
+        items={adviseTopicData}
+        value={appSortType}
+        fixAndroidTouchableBug={true}
+        useNativeAndroidPickerStyle={false}
+        Icon={() => <AdjustIcon />}
+        placeholder={{ label: 'Tìm kiếm theo chủ đề', value: '', key: 0 }}
+        onValueChange={async value => await onSetValueSortType(value)}
+        style={{
+          placeholder: styles.inputContainer,
+          iconContainer: Platform.OS === 'ios' ? styles.iconIOSContainer : styles.iconContainer,
+          inputIOS: styles.inputIOSContainer,
+          inputAndroid: styles.inputContainer,
+        }}
+      />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  main: {
+    justifyContent: 'center',
+    backgroundColor: appColors.orange2,
+    width: 220,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+    marginBottom: 10,
+  },
+  inputContainer: {
+    color: appColors.appSecondary,
+    flexWrap: 'wrap',
+    fontSize: 16,
+    fontWeight: '500',
+    width: 180,
+  },
+  inputIOSContainer: {
+    color: appColors.appSecondary,
+    flexWrap: 'wrap',
+    fontSize: 16,
+    fontWeight: '500',
+    width: 200,
+  },
+  iconContainer: {
+    top: '35%',
+    marginLeft: 6,
+  },
+  iconIOSContainer: {
+    top: 1,
+  },
+});

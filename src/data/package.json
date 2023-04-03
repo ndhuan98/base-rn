@@ -1,3 +1,8 @@
 {
-    "name": "@data"
-}
+    "name": "@data",
+    "version": "1.0",
+    "directories": {
+      "source": "./index.js"
+    }
+  }
+  

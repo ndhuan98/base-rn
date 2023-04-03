@@ -1,0 +1,7 @@
+{
+    "name": "src",
+    "devDependencies": {
+        "@types/react-native-fetch-blob": "^0.10.7",
+        "@types/react-native-video": "^5.0.14"
+    }
+}
